@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Grados extends Model
 {
-    use HasFactory;
+
+    protected $table = 'grados';
+
+    protected $primaryKey = 'id';
+
+    protected $fillable =['id','nombre_corto'];
+
 }

@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Alumno;
+use App\Models\calificaciones_periodo;
 use Illuminate\Http\Request;
 
-class AlumnoController extends Controller
+class calificaciones_periodoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,26 +18,19 @@ class AlumnoController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 10;
+        $perPage = 25;
 
         if (!empty($keyword)) {
-            $alumno = Alumno::where('apellido_paterno', 'LIKE', "%$keyword%")
-                ->orWhere('apellido_materno', 'LIKE', "%$keyword%")
-                ->orWhere('edad', 'LIKE', "%$keyword%")
-                ->orWhere('curp', 'LIKE', "%$keyword%")
-                ->orWhere('sexo', 'LIKE', "%$keyword%")
-                ->orWhere('direccion', 'LIKE', "%$keyword%")
-                ->orWhere('telefono', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%")
-                ->orWhere('otros', 'LIKE', "%$keyword%")
-                ->orWhere('talla_polo', 'LIKE', "%$keyword%")
-                ->orWhere('beca', 'LIKE', "%$keyword%")
+            $calificaciones_periodo = calificaciones_periodo::where('calificacionA:', 'LIKE', "%$keyword%")
+                ->orWhere('calificacionB', 'LIKE', "%$keyword%")
+                ->orWhere('promedio', 'LIKE', "%$keyword%")
+                ->orWhere('faltas', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $alumno = Alumno::latest()->paginate($perPage);
+            $calificaciones_periodo = calificaciones_periodo::latest()->paginate($perPage);
         }
 
-        return view('alumno.index', compact('alumno'));
+        return view('calificaciones_periodo.index', compact('calificaciones_periodo'));
     }
 
     /**
@@ -47,7 +40,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        return view('alumno.create');
+        return view('calificaciones_periodo.create');
     }
 
     /**
@@ -59,16 +52,12 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $requestData = $request->all();
-                if ($request->hasFile('foto:')) {
-            $requestData['foto:'] = $request->file('foto:')
-                ->store('uploads', 'public');
-        }
+        
+        calificaciones_periodo::create($requestData);
 
-        Alumno::create($requestData);
-
-        return redirect('alumno')->with('flash_message', 'Alumno added!');
+        return redirect('calificaciones_periodo')->with('flash_message', 'calificaciones_periodo added!');
     }
 
     /**
@@ -80,9 +69,9 @@ class AlumnoController extends Controller
      */
     public function show($id)
     {
-        $alumno = Alumno::findOrFail($id);
+        $calificaciones_periodo = calificaciones_periodo::findOrFail($id);
 
-        return view('alumno.show', compact('alumno'));
+        return view('calificaciones_periodo.show', compact('calificaciones_periodo'));
     }
 
     /**
@@ -94,9 +83,9 @@ class AlumnoController extends Controller
      */
     public function edit($id)
     {
-        $alumno = Alumno::findOrFail($id);
+        $calificaciones_periodo = calificaciones_periodo::findOrFail($id);
 
-        return view('alumno.edit', compact('alumno'));
+        return view('calificaciones_periodo.edit', compact('calificaciones_periodo'));
     }
 
     /**
@@ -109,17 +98,13 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        
         $requestData = $request->all();
-                if ($request->hasFile('foto:')) {
-            $requestData['foto:'] = $request->file('foto:')
-                ->store('uploads', 'public');
-        }
+        
+        $calificaciones_periodo = calificaciones_periodo::findOrFail($id);
+        $calificaciones_periodo->update($requestData);
 
-        $alumno = Alumno::findOrFail($id);
-        $alumno->update($requestData);
-
-        return redirect('alumno')->with('flash_message', 'Alumno updated!');
+        return redirect('calificaciones_periodo')->with('flash_message', 'calificaciones_periodo updated!');
     }
 
     /**
@@ -131,8 +116,8 @@ class AlumnoController extends Controller
      */
     public function destroy($id)
     {
-        Alumno::destroy($id);
+        calificaciones_periodo::destroy($id);
 
-        return redirect('alumno')->with('flash_message', 'Alumno deleted!');
+        return redirect('calificaciones_periodo')->with('flash_message', 'calificaciones_periodo deleted!');
     }
 }

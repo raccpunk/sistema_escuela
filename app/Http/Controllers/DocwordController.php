@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\docword;
 use Illuminate\Http\Request;
+use App\Models\Personal;
+use App\Models\Puestos;
+use App\Models\Grados;
+use App\Models\Grupos;
+use App\Models\Asignatura;
+use App\Models\Clases;
 
 class DocwordController extends Controller
 {
@@ -82,131 +88,79 @@ class DocwordController extends Controller
     {
         //
     }
-    public function ejemploword(){
+    public function ejemploword()
+    {
 
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection();
+        $header = array('size' => 14, 'bold' => true);
+        $sources = file_get_contents('C:\xampp\htdocs\sistema_escuela\app\img\membrete.jpg');
+        $section->addImage(
+            $sources,
+            array(
+                'width'         => 100,
+                'height'        => 100,
+                'marginTop'     => -1,
+                'marginLeft'    => -1,
+                'wrappingStyle' => 'behind'
+            )
+        );
+        $section->addTextBreak(1);
+        $section->addText('DIRRECCIÓN GENERAL DE EDUCACIÓN BÁSICA', $header);
+        $section = $phpWord->addSection(array('orientation' => 'landscape'));
 
+        $fancyTableStyleName = 'Prueba Con Tablas';
+        $fancyTableStyle = array('borderSize' => 1, 'borderColor' => 'a9acb4', 'cellMargin' => 0, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER, 'cellSpacing' => 0);
+        $fancyTableFirstRowStyle = array('borderBottomSize' => 2, 'borderBottomColor' => '0000FF', 'bgColor' => 'ecdcb4');
+        $fancyTableCellStyle = array('valign' => 'center');
+        $fancyTableFontStyle = array('bold' => true);
+        $phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
+        $table = $section->addTable($fancyTableStyleName);
+        $table->addRow(300);
+        $table->addCell(300, $fancyTableCellStyle)->addText('NO.', $fancyTableFontStyle);
+        $table->addCell(1000, $fancyTableCellStyle)->addText('RFC', $fancyTableFontStyle);
+        $table->addCell(15000, $fancyTableCellStyle)->addText('NOMBRES Y APELLIDOS', $fancyTableFontStyle);
+        $table->addCell(5000, $fancyTableCellStyle)->addText('FUNCIÓN', $fancyTableFontStyle);
+        $table->addCell(5000, $fancyTableCellStyle)->addText('LICENCIATURA', $fancyTableFontStyle);
+        $table->addCell(5000, $fancyTableCellStyle)->addText('ASIGNATURA', $fancyTableFontStyle);
+        $table->addCell(5000, $fancyTableCellStyle)->addText('Gdo y Gpo.', $fancyTableFontStyle);
+        $table->addCell(10000, $fancyTableCellStyle)->addText('FORMACIÓN ACADÉMICA', $fancyTableFontStyle);
+        $table->addCell(6000, $fancyTableCellStyle)->addText('OBSERVACIONES', $fancyTableFontStyle);
+        $Personas = Personal::where('puesto_id', '=',3)->get();
 
+        foreach ($Personas as $Persona) {
+            $puesto = Puestos::find($Persona->puesto_id);
+            $clases = clases::where('maestro_id', '=', $Persona->id)->get();
+            $table->addRow();
+            $table->addCell(300)->addText($Persona->id);
+            $table->addCell(300)->addText($Persona->RFC);
+            $table->addCell(500)->addText($Persona->nombres . ' ' . $Persona->apellidos);
+            $table->addCell(500)->addText($puesto->funcion);
+            $table->addCell(500)->addText($Persona->licenciatura);
+            $asignatura = $table->addCell(500);
+            $gradoGrupo = $table->addCell(500);
+            foreach ($clases as $clase) {
+                $grado = Grados::find($clase->grado_id);
+                $grupo = Grupos::find($clase->grupo_id);
+                $Asignaturas = Asignatura::find($clase->asignatura_id);
+                $asignatura->addText($Asignaturas->nombre);
+                $gradoGrupo->addText($grado->nombre_corto . $grupo->nombre);
+            }
+            $table->addCell(500)->addText($Persona->formacion);
+            $table->addCell(500)->addText($Persona->observaciones);
+        }
 
-// 1. Basic table
+        // Saving the document as OOXML file...
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        $objWriter->save('Kardex.docx');
 
+        // Saving the document as ODF file...
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
+        $objWriter->save('Kardex.odt');
 
-        // Creating the new document...
-$phpWord = new \PhpOffice\PhpWord\PhpWord();
-$section = $phpWord->addSection();
-$header = array('size' => 16, 'bold' => true);
+        // Saving the document as HTML file...
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 
-$path=realpath('App\public\resource\Bicho.png');
-$section->addTextBreak(1);
-$section->addText('Prueba Con Tablas', $header);
-
-$fancyTableStyleName = 'Prueba Con Tablas';
-$fancyTableStyle = array('borderSize' => 0, 'borderColor' => '006699', 'cellMargin' => 0, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER, 'cellSpacing' => 0);
-$fancyTableFirstRowStyle = array('borderBottomSize' => 0, 'borderBottomColor' => '0000FF', 'bgColor' => '66BBFF');
-$fancyTableCellStyle = array('valign' => 'center');
-$fancyTableCellBtlrStyle = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
-$fancyTableFontStyle = array('bold' => true);
-$phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
-$table = $section->addTable($fancyTableStyleName);
-$table->addRow(300);
-$table->addCell(300, $fancyTableCellStyle)->addText('NO°', $fancyTableFontStyle);
-$table->addCell(3000, $fancyTableCellStyle)->addText('Nombre', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellBtlrStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellBtlrStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellBtlrStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellBtlrStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellBtlrStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellStyle)->addText('', $fancyTableFontStyle);
-$table->addCell(500, $fancyTableCellBtlrStyle)->addText('', $fancyTableFontStyle);
-for ($i = 1; $i <= 8; $i++) {
-    $table->addRow();
-    $table->addCell(300)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $table->addCell(500)->addText("");
-    $text = (0 == $i % 2) ? '' : '';
-    $table->addCell(50000)->addText($text);
-}
-/* Note: any element you append to a document must reside inside of a Section. */
-
-// Adding an empty Section to the document...
-$section = $phpWord->addSection();
-// Adding Text element to the Section having font styled by default...
-$section->addText(
-    'Esto es una prueba de impresion de texto'
-);
-
-/*
- * Note: it's possible to customize font style of the Text element you add in three ways:
- * - inline;
- * - using named font style (new font style object will be implicitly created);
- * - using explicitly created font style object.
- */
-
-// Adding Text element with font customized inline...
-$section->addText(
-    'Esto es una prueba de impresion de texto',
-    array('name' => 'Tahoma', 'size' => 10)
-);
-
-// Adding Text element with font customized using named font style...
-$fontStyleName = 'oneUserDefinedStyle';
-$phpWord->addFontStyle(
-    $fontStyleName,
-    array('name' => 'Tahoma', 'size' => 10, 'color' => '1B2232', 'bold' => true)
-);
-$section->addText(
-    'Esto es una prueba de impresion de texto',
-    $fontStyleName
-);
-
-// Adding Text element with font customized using explicitly created font style object...
-$fontStyle = new \PhpOffice\PhpWord\Style\Font();
-$fontStyle->setBold(true);
-$fontStyle->setName('Tahoma');
-$fontStyle->setSize(13);
-$myTextElement = $section->addText('"Esto es una prueba de impresion de texto\'Esto es otra prueba de impresion de texto.');
-$myTextElement->setFontStyle($fontStyle);
-
-// Saving the document as OOXML file...
-$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-$objWriter->save('Kardex.docx');
-
-// Saving the document as ODF file...
-$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
-$objWriter->save('Kardex.odt');
-
-// Saving the document as HTML file...
-$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-
-return response()->download('Kardex.docx');
-
-/* Note: we skip RTF, because it's not XML-based and requires a different example. */
-/* Note: we skip PDF, because "HTML-to-PDF" approach is used to create PDF documents. */
+        return response()->download('Kardex.docx');
     }
 }

@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Grupos extends Model
 {
-    use HasFactory;
+
+    protected $table = 'grupos';
+
+    protected $primaryKey = 'id';
+
+    protected $fillable =['id','nombre'];
+
 }

@@ -63,3 +63,14 @@ Route::get('/PlantillaDocenteDoc', 'App\Http\Controllers\PlantillaDocenteDocCont
 
 
 Route::resource('alumno', $path . 'AlumnoController');
+
+Route::resource('asignaturas', $path .'AsignaturasController');
+
+
+
+
+
+
+
+
+Route::resource('calificaciones_periodo',$path.'calificaciones_periodoController');
