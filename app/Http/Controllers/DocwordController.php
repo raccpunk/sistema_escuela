@@ -92,22 +92,43 @@ class DocwordController extends Controller
     {
 
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
-        $section = $phpWord->addSection();
+
+
+        $section = $phpWord->addSection(array('orientation' => 'landscape'));
+        $fontStyleName = 'oneUserDefinedStyle';
+        $phpWord->addFontStyle(
+            $fontStyleName,
+            array('name' => 'Tahoma', 'size' => 10, 'color' => '1B2232', 'bold' => true)
+        );
         $header = array('size' => 14, 'bold' => true);
+        $nature = array('size' => 9, 'bold' => true);
+        $nature2 = array('size' => 9, 'bold' => false);
         $sources = file_get_contents('C:\xampp\htdocs\sistema_escuela\app\img\membrete.jpg');
+
         $section->addImage(
+
             $sources,
             array(
-                'width'         => 100,
-                'height'        => 100,
+                'width'         => 130,
+                'height'        => 65,
                 'marginTop'     => -1,
                 'marginLeft'    => -1,
                 'wrappingStyle' => 'behind'
+
             )
-        );
-        $section->addTextBreak(1);
-        $section->addText('DIRRECCIÓN GENERAL DE EDUCACIÓN BÁSICA', $header);
-        $section = $phpWord->addSection(array('orientation' => 'landscape'));
+            );
+        //$section->addTextBreak(1);
+        $section->addText('                                                           DIRRECCIÓN GENERAL DE EDUCACIÓN BÁSICA', $header);
+        $section->addText('                                                           DEPARTAMENTO DE ESCUELAS PARTICULARES', $header);
+        $section->addText('                                                                                                  Plantilla de personal de nivel secundaria',$fontStyleName,);
+        $section->addText('                                                                                                           CICLO ESCOLAR: 2020-2021',$fontStyleName);
+        $section->addText('                                                                                                                                                                                                                                   FECHA: 28/09/2020',$nature2);
+        $section->addText('Centro de trabajo: FRAY DIEGO DE LANDA                                                            C.C.T.: 31PES0079A                                   TURNO: MATUTINO');
+        $section->addText('Area: 02 LOCALIDAD:HUNUCMA                                                                    MUNICIPIO:HUNUCMA                               TELEFONO DE CT: 98893110737');
+        $section->addText('CORREO ELECTRONICO DEL CT: fray_diego69@hotmail.com                                   NO° ACUERDO 208         FECHA ACUERDO 29/07/199');
+        $section->addText('REPRESENTANTE LEGAL: R̲O̲L̲A̲N̲D̲O̲_̲J̲A̲V̲I̲E̲R̲ Q̲U̲I̲N̲T̲A̲L̲_̲C̲A̲S̲T̲I̲L̲L̲A̲_̲_̲_̲_̲_̲_̲_̲_                      CELULAR DEL REPRESENTANTE:9999000667');
+        $section->addText('                                                                                                                                                                                 CELULAR DIRECTOR:9995530999');
+        $section->addText('Plantilla de docentes.',$nature);
 
         $fancyTableStyleName = 'Prueba Con Tablas';
         $fancyTableStyle = array('borderSize' => 1, 'borderColor' => 'a9acb4', 'cellMargin' => 0, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER, 'cellSpacing' => 0);
@@ -152,15 +173,15 @@ class DocwordController extends Controller
 
         // Saving the document as OOXML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        $objWriter->save('Kardex.docx');
+        $objWriter->save('PlantillaDocente.docx');
 
         // Saving the document as ODF file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
-        $objWriter->save('Kardex.odt');
+        $objWriter->save('PlantillaDocente.odt');
 
         // Saving the document as HTML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 
-        return response()->download('Kardex.docx');
+        return response()->download('PlantillaDocente.docx');
     }
 }

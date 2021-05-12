@@ -55,7 +55,7 @@ Route::get('/InfoAlumnoDoc', 'App\Http\Controllers\InfoAlumnoDocController@InfoA
 Route::get('/BajaAlumnosDoc', 'App\Http\Controllers\BajaAlumnoDocController@BajaAlumnoWord');
 //Route de la lista de aprovechamiento de los alumnos
 Route::get('/AprovechamientoEscDoc', 'App\Http\Controllers\AprovechamientoEscDocController@AprovechamientoEscWord');
-//Route de kardex
+//Route de Plantilla Docente
 Route::get('/ejemplo', 'App\Http\Controllers\DocwordController@ejemploword');
 //Route de kardex
 Route::get('/PlantillaDocenteDoc', 'App\Http\Controllers\PlantillaDocenteDocController@PlantillaDocenteword');

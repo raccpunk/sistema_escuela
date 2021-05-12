@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
       <div class="col text-center">
-<a href="{{url('/PlantillaDocenteDoc')}}" class="btn btn-success ">Descargar Reporte de plantilla docente.</a>
+<a href="{{url('/ejemplo')}}" class="btn btn-success ">Descargar Reporte de plantilla docente.</a>
 <input type="button" class= "btn btn-primary"onclick="history.back()" name="volver atrás" value="volver atrás">
 </div>
     </div>
