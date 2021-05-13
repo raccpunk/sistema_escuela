@@ -11,9 +11,10 @@
 <div class="container">
     <div class="row">
       <div class="col text-center">
-<a href="{{url('/')}}" class="btn btn-success ">Descargar Kardex</a>
+<a href="{{url('/KardexPrimero')}}" class="btn btn-success ">Descargar Kardex de primero grado</a>
 
-
+<a href="{{url('/KardexSegundo')}}" class="btn btn-success ">Descargar Kardex de segundo grado</a>
+<a href="{{url('/KardexTercero')}}" class="btn btn-success ">Descargar Kardex de tercer grado</a>
   <input type="button" class= "btn btn-primary"onclick="history.back()" name="volver atrás" value="volver atrás">
 </div>
 

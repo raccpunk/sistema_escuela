@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\BajaAlumnoDoc;
+use App\Models\KardexSegundoDoc;
 use Illuminate\Http\Request;
 
-class BajaAlumnoDocController extends Controller
+class KardexSegundoDocController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class BajaAlumnoDocController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BajaAlumnoDoc  $bajaAlumnoDoc
+     * @param  \App\Models\KardexPrimeroDoc  $KardexSegundoDoc
      * @return \Illuminate\Http\Response
      */
-    public function show(BajaAlumnoDoc $bajaAlumnoDoc)
+    public function show(KardexSegundoDoc $KardexSegundoDoc)
     {
         //
     }
@@ -52,10 +51,10 @@ class BajaAlumnoDocController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BajaAlumnoDoc  $bajaAlumnoDoc
+     * @param  \App\Models\KardexPrimeroDoc  $KardexPrimeroDoc
      * @return \Illuminate\Http\Response
      */
-    public function edit(BajaAlumnoDoc $bajaAlumnoDoc)
+    public function edit(KardexSegundoDoc $KardexSegundoDoc)
     {
         //
     }
@@ -64,10 +63,10 @@ class BajaAlumnoDocController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BajaAlumnoDoc  $bajaAlumnoDoc
+     * @param  \App\Models\KardexSegundoDoc  $KardexPrimeroDoc
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BajaAlumnoDoc $bajaAlumnoDoc)
+    public function update(Request $request, KardexSegundoDoc $KardexSegundoDoc)
     {
         //
     }
@@ -75,15 +74,14 @@ class BajaAlumnoDocController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BajaAlumnoDoc  $bajaAlumnoDoc
+     * @param  \App\Models\KardexSegundooDoc  $KardexSegundoDoc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BajaAlumnoDoc $bajaAlumnoDoc)
+    public function destroy(KardexSegundoDoc $KardexSegundoDoc)
     {
         //
     }
-    
-    public function BajaAlumnoWord(){
+    public function KardexSegundoDocWord(){
         // Creating the new document...
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
@@ -130,20 +128,19 @@ $myTextElement->setFontStyle($fontStyle);
 
 // Saving the document as OOXML file...
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-$objWriter->save('BajaAlumno.docx');
+$objWriter->save('KardexSegundo.docx');
 
 // Saving the document as ODF file...
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
-$objWriter->save('BajaAlumno.odt');
+$objWriter->save('KardexSegundo.odt');
 
 // Saving the document as HTML file...
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 
-return response()->download('BajaAlumno.docx');
+return response()->download('KardexSegundo.docx');
 
 /* Note: we skip RTF, because it's not XML-based and requires a different example. */
 /* Note: we skip PDF, because "HTML-to-PDF" approach is used to create PDF documents. */
     }
+
 }
-
-

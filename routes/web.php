@@ -60,7 +60,11 @@ Route::get('/ejemplo', 'App\Http\Controllers\DocwordController@ejemploword');
 //Route de kardex
 Route::get('/PlantillaDocenteDoc', 'App\Http\Controllers\PlantillaDocenteDocController@PlantillaDocenteword');
 
+Route::get('/KardexPrimero', 'App\Http\Controllers\KardexPrimeroDocController@KardexPrimeroDocword');
 
+Route::get('/KardexSegundo', 'App\Http\Controllers\KardexSegundoDocController@KardexSegundoDocword');
+
+Route::get('/KardexTercero', 'App\Http\Controllers\KardexTerceroDocController@KardexTerceroDocword');
 
 Route::resource('alumno', $path . 'AlumnoController');
 

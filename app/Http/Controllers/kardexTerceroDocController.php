@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\PlantillaDocenteDoc;
+use App\Models\KardexTerceroDoc;
 use Illuminate\Http\Request;
 
-class PlantillaDocenteDocController extends Controller
+class KardexTerceroDocController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class PlantillaDocenteDocController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PlantillaDocenteDoc  $plantillaDocenteDoc
+     * @param  \App\Models\KardexPrimeroDoc  $KardexTerceroDoc
      * @return \Illuminate\Http\Response
      */
-    public function show(PlantillaDocenteDoc $plantillaDocenteDoc)
+    public function show(KardexTerceroDoc $KardexTerceroDoc)
     {
         //
     }
@@ -52,10 +51,10 @@ class PlantillaDocenteDocController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PlantillaDocenteDoc  $plantillaDocenteDoc
+     * @param  \App\Models\KardexPrimeroDoc  $KardexPrimeroDoc
      * @return \Illuminate\Http\Response
      */
-    public function edit(PlantillaDocenteDoc $plantillaDocenteDoc)
+    public function edit(KardexTerceroDoc $KardexTerceroDoc)
     {
         //
     }
@@ -64,10 +63,10 @@ class PlantillaDocenteDocController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PlantillaDocenteDoc  $plantillaDocenteDoc
+     * @param  \App\Models\KardexTerceroDoc  $KardexTerceroDoc
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PlantillaDocenteDoc $plantillaDocenteDoc)
+    public function update(Request $request, KardexTerceroDoc $KardexTerceroDoc)
     {
         //
     }
@@ -75,14 +74,14 @@ class PlantillaDocenteDocController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PlantillaDocenteDoc  $plantillaDocenteDoc
+     * @param  \App\Models\KardexTerceroDoc  $KardexTerceroDoc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PlantillaDocenteDoc $plantillaDocenteDoc)
+    public function destroy(KardexTerceroDoc $KardexTerceroDoc)
     {
         //
     }
-    public function PlantillaDocenteWord(){
+    public function KardexTerceroDocWord(){
         // Creating the new document...
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
@@ -129,18 +128,19 @@ $myTextElement->setFontStyle($fontStyle);
 
 // Saving the document as OOXML file...
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-$objWriter->save('PlantillaDocente.docx');
+$objWriter->save('KardexTercero.docx');
 
 // Saving the document as ODF file...
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
-$objWriter->save('PlantillaDocente.odt');
+$objWriter->save('KardexTerceroo.odt');
 
 // Saving the document as HTML file...
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 
-return response()->download('PlantillaDocente.docx');
+return response()->download('KardexTercero.docx');
 
 /* Note: we skip RTF, because it's not XML-based and requires a different example. */
 /* Note: we skip PDF, because "HTML-to-PDF" approach is used to create PDF documents. */
     }
+
 }
