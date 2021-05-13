@@ -83,48 +83,277 @@ class KardexTerceroDocController extends Controller
     }
     public function KardexTerceroDocWord(){
         // Creating the new document...
-$phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection(array('orientation' => ''));
+        $fontStyleName = 'oneUserDefinedStyle';
+        $phpWord->addFontStyle(
+            $fontStyleName,
+            array('name' => 'Tahoma', 'size' => 10, 'color' => '1B2232', 'bold' => true)
+        );
+        $header = array('size' => 14, 'bold' => true, 'align'=>'center','spaceAfter'=>100);
+        $nature = array('size' => 9, 'bold' => true);
+        $nature2 = array('size' => 9, 'bold' => false);
+        $nature3 = array('size' => 9, 'bold' => false, 'underline'=>true);
+        $nature4 = array('size' => 7, 'bold' => true);
 
-/* Note: any element you append to a document must reside inside of a Section. */
+        //$section->addTextBreak(1);
+        $section->addText('                      INFORMACIÓN ESCOLAR CICLO 2020-2021', $header);
+        $section->addText('');
+        $section->addText('                        CURP     |', $nature2);
+        $section->addText('                   NOMBRE    |',$nature2,);
+        $section->addText('     CLAVE ESCUELA    |',$nature2);
+        $section->addText('                        NIVEL    |',$nature2);
+        $section->addText(' NOMBRE ESCUELA    |' ,$nature2 ,'FRAY DIEGO DE LANDA',$nature);
+        $section->addText('                      GRADO   |',$nature2);
+        $section->addText('                      GRUPO   |',$nature2);
+        $section->addText('                   ESTATUS   |',$nature2);
+        $section->addText('');
+        $section->addText('                                                          CALIFICACIONES DEL CICLO 2020-2021',$nature3);
 
-// Adding an empty Section to the document...
-$section = $phpWord->addSection();
-// Adding Text element to the Section having font styled by default...
-$section->addText(
-    'Esto es una prueba de impresion de texto'
-);
 
-/*
- * Note: it's possible to customize font style of the Text element you add in three ways:
- * - inline;
- * - using named font style (new font style object will be implicitly created);
- * - using explicitly created font style object.
- */
+        $cellColSpan = array('gridSpan' => 5000000, 'valign' => 'center');
+        $fancyTableStyleName = 'Fancy Table';
+        $fancyTableStyle = array('borderSize' => 6, 'borderColor' => '', 'cellMargin' => 0, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER, 'cellSpacing' => 0);
+        $fancyTableFirstRowStyle = array('borderBottomSize' => 0, 'borderBottomColor' => '0000FF', 'bgColor' => '');
+        $fancyTableCellStyle = array('valign' => 'center');
+        $fancyTableCellBtlrStyle = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
+        $fancyTableFontStyle = array('bold' => true);
+        $phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
+        $table = $section->addTable($fancyTableStyleName);
 
-// Adding Text element with font customized inline...
-$section->addText(
-    'Esto es una prueba de impresion de texto',
-    array('name' => 'Tahoma', 'size' => 10)
-);
+        $table->addRow(900);
+        $table->addCell(5000, $fancyTableCellStyle)->addText('    ASIGNATURA', $fancyTableFontStyle);
+        $table->addCell(500, $fancyTableCellStyle)->addText('  I', $fancyTableFontStyle);
+        $table->addCell(500, $fancyTableCellStyle)->addText('  II', $fancyTableFontStyle);
+        $table->addCell(500, $fancyTableCellStyle)->addText('  III', $fancyTableFontStyle);
+        $table->addCell(2000, $fancyTableCellBtlrStyle)->addText('PROMEDIO', $nature4);
+        $table->addRow();
+        $table->addCell(5000)->addText("ESPAÑOL III");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("MATEMÁTICAS III");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("INGLES III");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("CIENCIAS III");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("HISTORIA III");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("FORMACIÓN CÍVICA Y ÉTICA II");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("TECNOLOGÍA");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("EDUCACIÓN FÍSICA");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("ARTES");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(2000)->addText("PROMEDIO GENERAL", $nature);
+        $table->addCell(500);
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $section->addText(' ');
+        $section->addText('                                                          PROMEDIOS DE GRADOS ANTERIORES ',$nature3);
 
-// Adding Text element with font customized using named font style...
-$fontStyleName = 'oneUserDefinedStyle';
-$phpWord->addFontStyle(
-    $fontStyleName,
-    array('name' => 'Tahoma', 'size' => 10, 'color' => '1B2232', 'bold' => true)
-);
-$section->addText(
-    'Esto es una prueba de impresion de texto',
-    $fontStyleName
-);
+        $cellColSpan = array('gridSpan' => 5000000, 'valign' => 'center');
+        $fancyTableStyleName = 'Fancy Table';
+        $fancyTableStyle = array('borderSize' => 6, 'borderColor' => '', 'cellMargin' => 0, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER, 'cellSpacing' => 0);
+        $fancyTableFirstRowStyle = array('borderBottomSize' => 0, 'borderBottomColor' => '0000FF', 'bgColor' => '');
+        $fancyTableCellStyle = array('valign' => 'center');
+        $fancyTableCellBtlrStyle = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
+        $fancyTableFontStyle = array('bold' => true);
+        $phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
+        $table = $section->addTable($fancyTableStyleName);
+        $table->addRow(900);
+        $table->addCell(5000, $fancyTableCellStyle)->addText('    ASIGNATURA', $fancyTableFontStyle);
+        $table->addCell(500, $fancyTableCellStyle)->addText(' ADEUDA', $fancyTableFontStyle);
+        $table->addCell(500, $fancyTableCellStyle)->addText(' APROVADO EN EXTRAORDINARIO', $fancyTableFontStyle);
+        $table->addCell(500, $fancyTableCellStyle)->addText(' CICLO REGULARIZACIÓN', $fancyTableFontStyle);
+        $table->addCell(2000, $fancyTableCellBtlrStyle)->addText('PROMEDIO', $nature4);
+        $table->addRow(900);
+        $table->addCell(5000, $fancyTableCellStyle)->addText('PROMEDIOS 1 er GRADO CICLO 2018-2019', $nature);
+        $table->addCell(500);
+        $table->addCell(500);
+        $table->addCell(500);
+        $table->addCell(2000);
 
-// Adding Text element with font customized using explicitly created font style object...
-$fontStyle = new \PhpOffice\PhpWord\Style\Font();
-$fontStyle->setBold(true);
-$fontStyle->setName('Tahoma');
-$fontStyle->setSize(13);
-$myTextElement = $section->addText('"Esto es una prueba de impresion de texto\'Esto es otra prueba de impresion de texto.');
-$myTextElement->setFontStyle($fontStyle);
+        $table->addRow();
+        $table->addCell(5000)->addText("Lengua Materna: Español");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("Matemáticas");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("Ingles");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("Ciencias Naturales Y Tecnología: Biología");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("Historia");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("Geografía");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("Formación Cívica y Ética");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("Tecnologia");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("Educación Física");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("Artes");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(2000)->addText("PROMEDIO GENERAL", $nature);
+        $table->addCell(500);
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow(900);
+        $table->addCell(5000, $fancyTableCellStyle)->addText('    ASIGNATURA', $fancyTableFontStyle);
+        $table->addCell(500, $fancyTableCellStyle)->addText(' ADEUDA', $fancyTableFontStyle);
+        $table->addCell(500, $fancyTableCellStyle)->addText(' APROVADO EN EXTRAORDINARIO', $fancyTableFontStyle);
+        $table->addCell(500, $fancyTableCellStyle)->addText(' CICLO REGULARIZACIÓN', $fancyTableFontStyle);
+        $table->addCell(2000, $fancyTableCellBtlrStyle)->addText('PROMEDIO', $nature4);
+        $table->addRow(900);
+        $table->addCell(5000, $fancyTableCellStyle)->addText('PROMEDIOS 2do GRADO CICLO 2019-2020', $nature);
+        
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+
+        $table->addRow();
+        $table->addCell(5000)->addText("LENGUA MATERNA (ESPAÑOL)");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("MATEMÁTICAS");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("LENGUA EXTRANGERA (INGLES)");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("CIENCIAS (FÍSICA)");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("HISTORIA");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+
+        $table->addRow();
+        $table->addCell(5000)->addText("FORMACIÓN CÍVICA Y ÉTICA");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("TECNOLOGÍA");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("EDUCACIÓN FÍSICA");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(5000)->addText("ARTES");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+        $table->addRow();
+        $table->addCell(2000)->addText("PROMEDIO GENERAL", $nature);
+        $table->addCell(500);
+        $table->addCell(500)->addText("");
+        $table->addCell(500)->addText("");
+        $table->addCell(2000)->addText("");
+
 
 // Saving the document as OOXML file...
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
