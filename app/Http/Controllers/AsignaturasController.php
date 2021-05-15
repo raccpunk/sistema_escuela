@@ -21,8 +21,8 @@ class AsignaturasController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $asignaturas = Asignatura::where('nombre:', 'LIKE', "%$keyword%")
-                ->orWhere('creditos:', 'LIKE', "%$keyword%")
+            $asignaturas = Asignatura::where('nombre', 'LIKE', "%$keyword%")
+                ->orWhere('creditos', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $asignaturas = Asignatura::latest()->paginate($perPage);
@@ -50,9 +50,9 @@ class AsignaturasController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Asignatura::create($requestData);
 
         return redirect('asignaturas')->with('flash_message', 'Asignatura added!');
@@ -96,9 +96,9 @@ class AsignaturasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $asignatura = Asignatura::findOrFail($id);
         $asignatura->update($requestData);
 

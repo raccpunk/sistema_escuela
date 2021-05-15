@@ -12,6 +12,6 @@ class Grados extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable =['id','nombre_corto'];
+    protected $fillable =['id','nombre_largo'];
 
 }

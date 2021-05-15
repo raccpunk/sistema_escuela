@@ -22,19 +22,10 @@ Route::get('/', function () {
 Route::get('/kardex', function () {
     return view('kardex');
 });
-Route::get('/BajaAlumno', function () {
-    return view('alumnos/BajaAlumno');
-});
 Route::get('/AprovechamientoEsc', function () {
     return view('AprovechamientoEsc');
 });
-Route::get('/ListaAsistencia', function () {
-    return view('ListaAsistencia');
-});
-Route::get('/InfoAlumno', function () {
-    return view('InfoAlumno');
-});
-Route::get('/PlantillaDocente', function () {
+Route::get('/Docentes', function () {
     return view('PlantillaDocente');
 });
 Route::get('/MenuJefaControlEscolar', function () {
@@ -43,30 +34,29 @@ Route::get('/MenuJefaControlEscolar', function () {
 Route::get('/MenuJefaControlEscolar', function () {
     return view('MenuJefaControlEscolar');
 });
+// Route::get('/Calificaciones', function () {
+//     return view('Calificaciones');
+// });
 $path = 'App\\Http\\Controllers\\';
 //--------------------------------------
 //ROUTES Documentos
 //--------------------------------------
-//Route de la lista de asistencia
-Route::get('/ListaAsistenciaDoc', $path . 'ListaAsistenciaDocController@ListaAsistenciaWord');
-//Route de la informacion de los alumnos
-Route::get('/InfoAlumnoDoc', 'App\Http\Controllers\InfoAlumnoDocController@InfoAlumnoWord');
-//Route de la lista de los documentos de baja para los alumnos
-Route::get('/BajaAlumnosDoc', 'App\Http\Controllers\BajaAlumnoDocController@BajaAlumnoWord');
 //Route de la lista de aprovechamiento de los alumnos
 Route::get('/AprovechamientoEscDoc', 'App\Http\Controllers\AprovechamientoEscDocController@AprovechamientoEscWord');
 //Route de Plantilla Docente
-Route::get('/ejemplo', 'App\Http\Controllers\DocwordController@ejemploword');
+Route::get('/docentes', 'App\Http\Controllers\DocwordController@docenteword');
+Route::get('/personal', 'App\Http\Controllers\DocwordController@personalword');
 //Route de kardex
 Route::get('/PlantillaDocenteDoc', 'App\Http\Controllers\PlantillaDocenteDocController@PlantillaDocenteword');
 
-Route::get('/KardexPrimero', 'App\Http\Controllers\KardexPrimeroDocController@KardexPrimeroDocword');
+Route::post('/KardexPrimero', 'App\Http\Controllers\KardexPrimeroDocController@KardexPrimeroDocword');
 
 Route::get('/KardexSegundo', 'App\Http\Controllers\KardexSegundoDocController@KardexSegundoDocword');
 
 Route::get('/KardexTercero', 'App\Http\Controllers\KardexTerceroDocController@KardexTerceroDocword');
 
 Route::resource('alumno', $path . 'AlumnoController');
+Route::resource('Calificaciones', $path . 'CalificacionesController');
 
 Route::resource('asignaturas', $path .'AsignaturasController');
 

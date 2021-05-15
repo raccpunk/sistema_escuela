@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class cicloEscolar extends Model
 {
-    use HasFactory;
+    protected $table = 'ciclo_escolar';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id','nombre'];
 }
+?>
