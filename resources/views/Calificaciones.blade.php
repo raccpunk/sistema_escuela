@@ -5,7 +5,7 @@
 <ul class="navbar-nav ml-auto">
     <div class="card-body">
         <blockquote class="blockquote">
-            <p>Boletas de calificaciones.</p>
+            <p>Kardex</p>
     </div>
     <div class="container">
         <div class="row">
