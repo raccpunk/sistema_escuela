@@ -31,8 +31,8 @@ Route::get('/Docentes', function () {
 Route::get('/MenuJefaControlEscolar', function () {
     return view('MenuJefaControlEscolar');
 });
-Route::get('/MenuJefaControlEscolar', function () {
-    return view('MenuJefaControlEscolar');
+Route::get('/menu', function () {
+    return view('layout');
 });
 // Route::get('/Calificaciones', function () {
 //     return view('Calificaciones');

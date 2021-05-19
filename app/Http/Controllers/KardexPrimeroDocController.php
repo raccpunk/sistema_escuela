@@ -73,7 +73,7 @@ class KardexPrimeroDocController extends Controller
             //todo: take data from db
         }
         $table->addCell(5000)->addText("Lengua Materna: Español");
-        $table->addCell(500)->addText();
+        $table->addCell(500)->addText("");
         $table->addCell(500)->addText("");
         $table->addCell(500)->addText("");
         $table->addCell(2000)->addText("");
@@ -152,8 +152,5 @@ class KardexPrimeroDocController extends Controller
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 
         return response()->download('KardexPrimero.docx');
-
-        /* Note: we skip RTF, because it's not XML-based and requires a different example. */
-        /* Note: we skip PDF, because "HTML-to-PDF" approach is used to create PDF documents. */
     }
 }
