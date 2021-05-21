@@ -4,6 +4,16 @@
 <form action='{{ url('KardexTercero')}}' method='POST'>
     @csrf
     <div class="form-group">
+        <h1>Kardex Tercer Grado</h1>
+        <p>Seleccionar Grupo</p>
+        <select name="plantilla" id="plantilla">
+
+            <option value="{{url('/docentes')}}">A</option>
+            <option value="{{url('/personal')}}">B</option>
+        </select>
+        <br>
+        <br>
+        <p>Seleccionar Alumno</p>
         <div class="form-group">
             <select class="form-control" name="alumno_id">
                 @foreach($tercero as $item)
@@ -14,7 +24,7 @@
     </div>
     <div class="modal-footer">
         {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-        <button type="sumbit"  class="btn btn-primary">Descargar</button>
+        <button type="sumbit"  <button type="button" class="btn btn-success btn-lg btn-block"><i class="fa fa-floppy-o"></i> Descargar</button>
     </div>
 </form>
 </div>

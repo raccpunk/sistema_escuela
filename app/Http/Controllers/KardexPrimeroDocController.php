@@ -30,6 +30,7 @@ class KardexPrimeroDocController extends Controller
         $nature2 = array('size' => 9, 'bold' => false);
         $nature3 = array('size' => 9, 'bold' => false);
         $nature4 = array('size' => 7, 'bold' => true);
+        $nature5 = array('size' => 11, 'bold' => true);
         $alumno = Alumno::find($request->alumno_id);
         $nombre = $alumno->nombres . ' ' . $alumno->apellido_paterno . '' . $alumno->apellido_materno;
         $grupoAlumno = GrupoAlumno::where('alumno_id','=',$request->alumno_id)->get();
@@ -134,9 +135,8 @@ class KardexPrimeroDocController extends Controller
         $table->addRow();
         $cellColSpan = array('gridSpan' => 4, 'valign' => 'center'); //esta variable cobina la celda
         $cellHCentered = array('align' => 'right'); //esta variable alinea el texto a la derecha
-        $table->addCell(2000, $cellColSpan)->addText("Promedio General", null, $cellHCentered);
+        $table->addCell(2000, $cellColSpan)->addText("PROMEDIO GENERAL", $nature5, $cellHCentered);
         $table->addCell(500)->addText("");
-
 
 
 

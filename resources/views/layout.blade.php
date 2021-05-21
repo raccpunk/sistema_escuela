@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>First Webpage</title>
+  </head>
+ <body>
+    <header style="background-color: #303030; height: 80px;width: 100%">
+	<h1 style="font-size: 30px; color: white;text-align: center; padding-top: 15px;"></h1>
+   </header>
+ </body>
+</html>
+
 <html lang="es-mx">
 <head>
 <meta charset="utf-8">
@@ -93,9 +105,9 @@ li a:hover:not(.active) {
     <ul id="menu">
         <li><input type="checkbox" name="list" id="nivel1-1"><label style="margin-left:1.8em;" for="nivel1-1">Kardex</label>
         <ul class="interior">
-              <li><input type="checkbox" name="list"><a href="{{url('/CalificacionesPrimero')}}">Primeros</a></li>
-              <li><input type="checkbox" name="list"><a href="{{url('/CalificacionesSegundo')}}">Segundos</a></li>
-              <li><input type="checkbox" name="list"><a href="{{url('/CalificacionesTercero')}}">Terceros</a></li>
+              <li><input type="checkbox" name="list"><a href="{{url('/CalificacionesPrimero')}}">Primer Grado</a></li>
+              <li><input type="checkbox" name="list"><a href="{{url('/CalificacionesSegundo')}}">Segundo Grado</a></li>
+              <li><input type="checkbox" name="list"><a href="{{url('/CalificacionesTercero')}}">Tercer Grado</a></li>
            </ul>
         </li>
         {{-- don't touch --}}

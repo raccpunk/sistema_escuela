@@ -1,7 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title></title>
+  </head>
+ <body>
+    <header style="background-color: #303030; height: 80px;width: 100%">
+	<h1 style="font-size: 30px; color: white;text-align: center; padding-top: 15px;"></h1>
+   </header>
+ </body>
+</html>
+
 @extends('layout')
 @section('content')
 
 <head>
+
 <style>
 
 body {
@@ -83,9 +96,12 @@ body {
 	margin: 100px auto;
 }
 </style>
+
 </head>
+
 <body>
 <div class="text-center" style="padding:200px;">
+    <h1>Plantilla Docente</h1>
 <select name="plantilla" id="plantilla">
 	<option selected="yes">Seleccionar Documento</option>
     <option value="{{url('/docentes')}}" >Reporte de plantilla docente</option>

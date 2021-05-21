@@ -23,6 +23,7 @@ class KardexSegundoDocController extends Controller
         $nature2 = array('size' => 9, 'bold' => false);
         $nature3 = array('size' => 9, 'bold' => false, 'underline' => true);
         $nature4 = array('size' => 7, 'bold' => true);
+        $nature5 = array('size' => 11, 'bold' => true);
 
         //$section->addTextBreak(1);
         $section->addText('                      INFORMACIÓN ESCOLAR CICLO 2020-2021', $header);
@@ -110,12 +111,12 @@ class KardexSegundoDocController extends Controller
         $table->addCell(500)->addText("");
         $table->addCell(2000)->addText("");
         $table->addRow();
-        $table->addCell(2000)->addText("PROMEDIO GENERAL", $nature);
-        $table->addCell(500);
+        $cellColSpan = array('gridSpan' => 4, 'valign' => 'center'); //esta variable cobina la celda
+        $cellHCentered = array('align' => 'right'); //esta variable alinea el texto a la derecha
+        $table->addCell(2000, $cellColSpan)->addText("PROMEDIO GENERAL", $nature5, $cellHCentered);
         $table->addCell(500)->addText("");
-        $table->addCell(500)->addText("");
-        $table->addCell(2000)->addText("");
         $section->addText(' ');
+        $section->addTextBreak(8);
         $section->addText('                                                          PROMEDIOS DE GRADOS ANTERIORES ', $nature3);
 
         $cellColSpan = array('gridSpan' => 5000000, 'valign' => 'center');
@@ -134,11 +135,11 @@ class KardexSegundoDocController extends Controller
         $table->addCell(500, $fancyTableCellStyle)->addText(' CICLO REGULARIZACIÓN', $fancyTableFontStyle);
         $table->addCell(2000, $fancyTableCellBtlrStyle)->addText('PROMEDIO', $nature4);
         $table->addRow(900);
-        $table->addCell(5000, $fancyTableCellStyle)->addText('PROMEDIOS 1 er GRADO CICLO 2019-2020', $nature);
-        $table->addCell(500)->addText("");
-        $table->addCell(500)->addText("");
-        $table->addCell(500)->addText("");
-        $table->addCell(2000)->addText("");
+
+        $cellColSpan = array('gridSpan' => 5, 'valign' => 'center'); //esta variable cobina la celda
+        $cellHCentered1 = array('align' => 'left','size' => 9, 'bold' => true); //esta variable alinea el texto a la derecha
+        $table->addCell(2000, $cellColSpan)->addText("PROMEDIOS 1 er GRADO CICLO 2018-2019", $nature5, $cellHCentered1);
+
 
         $table->addRow();
         $table->addCell(5000)->addText("Lengua Materna: Español");
@@ -201,11 +202,10 @@ class KardexSegundoDocController extends Controller
         $table->addCell(500)->addText("");
         $table->addCell(2000)->addText("");
         $table->addRow();
-        $table->addCell(2000)->addText("PROMEDIO GENERAL", $nature);
-        $table->addCell(500);
+        $cellColSpan = array('gridSpan' => 4, 'valign' => 'center'); //esta variable cobina la celda
+        $cellHCentered = array('align' => 'right'); //esta variable alinea el texto a la derecha
+        $table->addCell(2000, $cellColSpan)->addText("PROMEDIO GENERAL", $nature5, $cellHCentered);
         $table->addCell(500)->addText("");
-        $table->addCell(500)->addText("");
-        $table->addCell(2000)->addText("");
 
         // Saving the document as OOXML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
