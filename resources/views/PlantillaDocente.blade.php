@@ -1,18 +1,7 @@
 @extends('layout')
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap Simple Success Confirmation Popup</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
 
 body {
@@ -96,14 +85,14 @@ body {
 </style>
 </head>
 <body>
-<div class="text-center" style="padding:100px;">    
-<select name="select">
+<div class="text-center" style="padding:200px;">
+<select name="plantilla" id="plantilla">
 	<option selected="yes">Seleccionar Documento</option>
-    <option href="{{url('/personal')}}" >Reporte de plantilla docente</option>
-	<option href="{{url('/docentes')}}">Reporte de plantilla de personal. </option>
+    <option value="{{url('/docentes')}}" >Reporte de plantilla docente</option>
+	<option value="{{url('/personal')}}">Reporte de plantilla de personal. </option>
 </select>
 <hr />
-	<button href="#myModal" data-toggle="modal" type="button" class="btn btn-outline-success"><i class="fa fa-floppy-o"></i> Descargar</button>
+	<button onclick="ShowSelected()"  data-toggle="modal" type="button" class="btn btn-outline-success"><i class="fa fa-floppy-o"></i> Descargar</button>
 </div>
 
 <!-- Modal HTML -->
@@ -120,11 +109,27 @@ body {
 				<p class="text-center">Tu documento fue descargado de manera correcta </p>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+				<button class="btn btn-success btn-block" data-dismiss="modal" >OK</button>
 			</div>
 		</div>
 	</div>
 </div>
 </body>
 </html>
+<script type="text/javascript">
+    function ShowSelected()
+    {
+        var combo = document.getElementById("plantilla");
+        var selected = combo.selectedIndex;
+    if(selected!=0){
+    /* Para obtener el valor */
+    var cod = combo.value;
+    window.location.href = cod;
+    }
+    // /* Para obtener el texto */
+    // var combo = document.getElementById("plantilla");
+    // var selected = combo.options[combo.selectedIndex].text;
+    // alert(selected);
+    }
+</script>
 @endsection

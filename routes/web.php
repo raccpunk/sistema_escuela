@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\word_pruebaController;
+use App\Http\Controllers\CalificacionesController;
 use Illuminate\Support\Facades\Route;
 use League\CommonMark\Block\Element\Document;
 use SebastianBergmann\Template\Template;
@@ -28,15 +29,16 @@ Route::get('/AprovechamientoEsc', function () {
 Route::get('/Docentes', function () {
     return view('PlantillaDocente');
 });
-Route::get('/MenuJefaControlEscolar', function () {
-    return view('MenuJefaControlEscolar');
-});
+// Route::get('/MenuJefaControlEscolar', function () {
+//     return view('MenuJefaControlEscolar');
+// });
 Route::get('/menu', function () {
     return view('layout');
 });
-// Route::get('/Calificaciones', function () {
-//     return view('Calificaciones');
-// });
+Route::get('/CalificacionesPrimero', [CalificacionesController::class,'primero']);
+Route::get('/CalificacionesSegundo', [CalificacionesController::class,'segundo']);
+Route::get('/CalificacionesTercero',[CalificacionesController::class,'tercero']);
+
 $path = 'App\\Http\\Controllers\\';
 //--------------------------------------
 //ROUTES Documentos
@@ -51,12 +53,12 @@ Route::get('/PlantillaDocenteDoc', 'App\Http\Controllers\PlantillaDocenteDocCont
 
 Route::post('/KardexPrimero', 'App\Http\Controllers\KardexPrimeroDocController@KardexPrimeroDocword');
 
-Route::get('/KardexSegundo', 'App\Http\Controllers\KardexSegundoDocController@KardexSegundoDocword');
+Route::post('/KardexSegundo', 'App\Http\Controllers\KardexSegundoDocController@KardexSegundoDocword');
 
-Route::get('/KardexTercero', 'App\Http\Controllers\KardexTerceroDocController@KardexTerceroDocword');
+Route::post('/KardexTercero', 'App\Http\Controllers\KardexTerceroDocController@KardexTerceroDocword');
 
 Route::resource('alumno', $path . 'AlumnoController');
-Route::resource('Calificaciones', $path . 'CalificacionesController');
+// Route::resource('Calificaciones', $path . 'CalificacionesController');
 
 Route::resource('asignaturas', $path .'AsignaturasController');
 
