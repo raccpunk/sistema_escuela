@@ -102,13 +102,16 @@ body {
 <body>
 <div class="text-center" style="padding:200px;">
     <h1>Plantilla Docente</h1>
+    <p>Seleccionar Documento</p>
 <select name="plantilla" id="plantilla">
-	<option selected="yes">Seleccionar Documento</option>
+    <option value="">seleccionar</option>
     <option value="{{url('/docentes')}}" >Reporte de plantilla docente</option>
 	<option value="{{url('/personal')}}">Reporte de plantilla de personal. </option>
 </select>
+
 <hr />
-	<button onclick="ShowSelected()"  data-toggle="modal" type="button" class="btn btn-outline-success"><i class="fa fa-floppy-o"></i> Descargar</button>
+
+	<button onclick="ShowSelected()"  data-toggle="modal" type="button" data-toggle="modal"href="#myModal" class="btn btn-outline-success"><i class="fa fa-floppy-o"></i> Descargar</button>
 </div>
 
 <!-- Modal HTML -->
