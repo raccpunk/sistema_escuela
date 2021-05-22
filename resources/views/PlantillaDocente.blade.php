@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-	<title></title>
-  </head>
- <body>
-    <header style="background-color: #303030; height: 80px;width: 100%">
-	<h1 style="font-size: 30px; color: white;text-align: center; padding-top: 15px;"></h1>
-   </header>
- </body>
-</html>
 
 @extends('layout')
 @section('content')

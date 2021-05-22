@@ -1,15 +1,5 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html>
-  <head>
-	<title>First Webpage</title>
-  </head>
- <body>
-    <header style="background-color: #303030; height: 80px;width: 100%">
-	<h1 style="font-size: 30px; color: white;text-align: center; padding-top: 15px;"></h1>
-   </header>
- </body>
-</html>
+
 
 <html lang="es-mx">
 <head>
@@ -96,6 +86,9 @@ li a:hover:not(.active) {
 </style>
 </head>
 <body>
+    <header style="background-color: #303030; height: 80px;width: 100%">
+        <h1 style="font-size: 30px; color: white;text-align: center; padding-top: 15px;"></h1>
+       </header>
     @section('sidebar')
 <ul class="navbar-nav ml-auto">
   <li><a href="http://localhost/sistema_escuela/public/menu"type="button" class="Active  "><i class="fa fa-file-word-o"></i>  Documentos de control escolar</button>
