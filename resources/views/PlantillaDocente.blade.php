@@ -89,7 +89,7 @@ body {
 </head>
 
 <body>
-<div class="text-center" style="padding:200px;">
+    <div class="modal-body" style="padding:100px; margin-left: 8em;">
     <h1>Plantilla Docente</h1>
     <p>Seleccionar Documento</p>
 <select name="plantilla" id="plantilla">
@@ -100,7 +100,7 @@ body {
 
 <hr />
 
-	<button onclick="ShowSelected()"  data-toggle="modal" type="button" data-toggle="modal"href="#myModal" class="btn btn-outline-success"><i class="fa fa-floppy-o"></i> Descargar</button>
+	<button id="descargar" onclick="ShowSelected()"  data-toggle="modal" type="button" data-toggle="modal"href="#myModal" class="btn btn-outline-success"><i class="fa fa-floppy-o"></i> Descargar</button>
 </div>
 
 <!-- Modal HTML -->
@@ -125,19 +125,26 @@ body {
 </body>
 </html>
 <script type="text/javascript">
+    var combo = document.getElementById("plantilla");
+    var button = document.getElementById("descargar");
+    button.disabled = true;
+    combo.addEventListener('change', function(){
+        var selected = combo.selectedIndex;
+        if(selected!=0){
+            button.disabled = false;
+        }
+        else{
+            button.disabled = true;
+        }
+    })
+
     function ShowSelected()
     {
-        var combo = document.getElementById("plantilla");
         var selected = combo.selectedIndex;
-    if(selected!=0){
-    /* Para obtener el valor */
-    var cod = combo.value;
-    window.location.href = cod;
-    }
-    // /* Para obtener el texto */
-    // var combo = document.getElementById("plantilla");
-    // var selected = combo.options[combo.selectedIndex].text;
-    // alert(selected);
+        if(selected!=0){
+            var cod = combo.value;
+            window.location.href = cod;
+        }
     }
 </script>
 @endsection

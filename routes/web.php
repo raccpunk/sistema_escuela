@@ -6,16 +6,6 @@ use Illuminate\Support\Facades\Route;
 use League\CommonMark\Block\Element\Document;
 use SebastianBergmann\Template\Template;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,17 +19,18 @@ Route::get('/AprovechamientoEsc', function () {
 Route::get('/Docentes', function () {
     return view('PlantillaDocente');
 });
-// Route::get('/MenuJefaControlEscolar', function () {
-//     return view('MenuJefaControlEscolar');
-// });
+
+$path = 'App\\Http\\Controllers\\';
 Route::get('/menu', function () {
     return view('layout');
 });
-Route::get('/CalificacionesPrimero', [CalificacionesController::class,'primero']);
-Route::get('/CalificacionesSegundo', [CalificacionesController::class,'segundo']);
-Route::get('/CalificacionesTercero',[CalificacionesController::class,'tercero']);
+Route::get('/CalificacionesPrimeroA', [CalificacionesController::class,'primeroA']);
+Route::get('/CalificacionesPrimeroB', [CalificacionesController::class,'primeroB']);
+Route::get('/CalificacionesSegundoA',[CalificacionesController::class,'segundoA']);
+Route::get('/CalificacionesSegundoB',[CalificacionesController::class,'segundoB']);
+Route::get('/CalificacionesTerceroA',[CalificacionesController::class,'terceroA']);
+Route::get('/CalificacionesTerceroB',[CalificacionesController::class,'terceroB']);
 
-$path = 'App\\Http\\Controllers\\';
 //--------------------------------------
 //ROUTES Documentos
 //--------------------------------------
@@ -58,7 +49,7 @@ Route::post('/KardexSegundo', 'App\Http\Controllers\KardexSegundoDocController@K
 Route::post('/KardexTercero', 'App\Http\Controllers\KardexTerceroDocController@KardexTerceroDocword');
 
 Route::resource('alumno', $path . 'AlumnoController');
-// Route::resource('Calificaciones', $path . 'CalificacionesController');
+Route::resource('Calificaciones', $path . 'CalificacionesController');
 
 Route::resource('asignaturas', $path .'AsignaturasController');
 
