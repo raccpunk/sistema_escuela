@@ -142,6 +142,7 @@ class KardexTerceroDocController extends Controller
         // $cellHCentered1 = array('align' => 'left','size' => 9, 'bold' => true); //esta variable alinea el texto a la derecha
         // $table->addCell(2000, $cellColSpan)->addText("PROMEDIOS 1 er GRADO CICLO 2018-2019", $nature5, $cellHCentered1);
 
+
         // $table->addRow();
         // $table->addCell(5000)->addText("Lengua Materna: Español");
         // $table->addCell(500)->addText("");
@@ -286,7 +287,7 @@ class KardexTerceroDocController extends Controller
 
         // Saving the document as ODF file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
-        $objWriter->save('KardexTerceroo.odt');
+        $objWriter->save('KardexTercero.odt');
 
         // Saving the document as HTML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
