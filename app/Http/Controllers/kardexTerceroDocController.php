@@ -13,7 +13,6 @@ use App\Models\Grados;
 use App\Models\GrupoAlumno;
 use App\Models\Grupos;
 use App\Models\EstadoAlumnos;
-
 class KardexTerceroDocController extends Controller
 {
     public function KardexTerceroDocWord(Request $request)
@@ -34,7 +33,7 @@ class KardexTerceroDocController extends Controller
         $nature5 = array('size' => 11, 'bold' => true);
 
         $alumno = Alumno::find($request->alumno_id);
-        $nombre = $alumno->nombres . ' ' . $alumno->apellido_paterno . '' . $alumno->apellido_materno;
+        $nombre = $alumno->nombres . ' ' . $alumno->apellido_paterno . ' ' . $alumno->apellido_materno;
         $grupoAlumno = GrupoAlumno::where('alumno_id', '=', $request->alumno_id)->get();
         $grado = Grados::find($grupoAlumno[0]->grado_id);
         $grupo = Grupos::find($grupoAlumno[0]->grupo_id);
@@ -284,15 +283,15 @@ class KardexTerceroDocController extends Controller
 
         // Saving the document as OOXML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        $objWriter->save($nombre . '.docx');
+        $objWriter->save('KardexTercero.docx');
 
         // Saving the document as ODF file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
-        $objWriter->save($nombre . '.docx');
+        $objWriter->save('KardexTerceroo.odt');
 
         // Saving the document as HTML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 
-        return response()->download($nombre . '.docx');
+        return response()->download('KardexTercero.docx');
     }
 }
