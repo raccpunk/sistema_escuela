@@ -21,7 +21,7 @@ class calificaciones_periodoController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $calificaciones_periodo = calificaciones_periodo::where('calificacionA:', 'LIKE', "%$keyword%")
+            $calificaciones_periodo = calificaciones_periodo::where('calificacionA', 'LIKE', "%$keyword%")
                 ->orWhere('calificacionB', 'LIKE', "%$keyword%")
                 ->orWhere('promedio', 'LIKE', "%$keyword%")
                 ->orWhere('faltas', 'LIKE', "%$keyword%")
@@ -52,9 +52,9 @@ class calificaciones_periodoController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         calificaciones_periodo::create($requestData);
 
         return redirect('calificaciones_periodo')->with('flash_message', 'calificaciones_periodo added!');
@@ -98,9 +98,9 @@ class calificaciones_periodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $calificaciones_periodo = calificaciones_periodo::findOrFail($id);
         $calificaciones_periodo->update($requestData);
 
