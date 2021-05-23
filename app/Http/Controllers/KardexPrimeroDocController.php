@@ -34,7 +34,11 @@ class KardexPrimeroDocController extends Controller
         $nature4 = array('size' => 7, 'bold' => true);
         $nature5 = array('size' => 11, 'bold' => true);
         $alumno = Alumno::find($request->alumno_id);
+<<<<<<< HEAD
         $nombre = $alumno->nombres . ' ' . $alumno->apellido_paterno . ' ' . $alumno->apellido_materno;
+=======
+        $nombre = $alumno->nombres . ' ' . $alumno->apellido_paterno . '' . $alumno->apellido_materno;
+>>>>>>> master
         $grupoAlumno = GrupoAlumno::where('alumno_id', '=', $request->alumno_id)->get();
         $grado = Grados::find($grupoAlumno[0]->grado_id);
         $grupo = Grupos::find($grupoAlumno[0]->grupo_id);
@@ -97,6 +101,7 @@ class KardexPrimeroDocController extends Controller
                 ->where('clases.asignatura_id', $asignatura->id)
                 ->select('calificaciones_periodo.promedio')
                 ->get()->first();
+<<<<<<< HEAD
                 if(!is_null($calificacion1)){
                     $table->addCell(500)->addText($calificacion1->promedio);
                 }
@@ -115,6 +120,23 @@ class KardexPrimeroDocController extends Controller
                 else{
                     $table->addCell(500)->addText("");
                 }
+=======
+            if (!is_null($calificacion1)) {
+                $table->addCell(500)->addText($calificacion1->promedio);
+            } else {
+                $table->addCell(500)->addText("");
+            }
+            if (!is_null($calificacion2)) {
+                $table->addCell(500)->addText($calificacion2->promedio);
+            } else {
+                $table->addCell(500)->addText("");
+            }
+            if (!is_null($calificacion3)) {
+                $table->addCell(500)->addText($calificacion3->promedio);
+            } else {
+                $table->addCell(500)->addText("");
+            }
+>>>>>>> master
             $table->addCell(2000)->addText("");
             $table->addRow();
         }
@@ -127,15 +149,15 @@ class KardexPrimeroDocController extends Controller
 
         // Saving the document as OOXML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        $objWriter->save('KardexPrimero.docx');
+        $objWriter->save($nombre . '.docx');
 
         // Saving the document as ODF file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
-        $objWriter->save('KardexPrimero.odt');
+        $objWriter->save($nombre . '.docx');
 
         // Saving the document as HTML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 
-        return response()->download('KardexPrimero.docx');
+        return response()->download($nombre . '.docx');
     }
 }

@@ -13,6 +13,10 @@ use App\Models\Grados;
 use App\Models\GrupoAlumno;
 use App\Models\Grupos;
 use App\Models\EstadoAlumnos;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 class KardexTerceroDocController extends Controller
 {
     public function KardexTerceroDocWord(Request $request)
@@ -33,7 +37,11 @@ class KardexTerceroDocController extends Controller
         $nature5 = array('size' => 11, 'bold' => true);
 
         $alumno = Alumno::find($request->alumno_id);
+<<<<<<< HEAD
         $nombre = $alumno->nombres . ' ' . $alumno->apellido_paterno . ' ' . $alumno->apellido_materno;
+=======
+        $nombre = $alumno->nombres . ' ' . $alumno->apellido_paterno . '' . $alumno->apellido_materno;
+>>>>>>> master
         $grupoAlumno = GrupoAlumno::where('alumno_id', '=', $request->alumno_id)->get();
         $grado = Grados::find($grupoAlumno[0]->grado_id);
         $grupo = Grupos::find($grupoAlumno[0]->grupo_id);
@@ -121,6 +129,29 @@ class KardexTerceroDocController extends Controller
         $section->addText(' ');
         // $section->addTextBreak(8);
         // $section->addText('                                                          PROMEDIOS DE GRADOS ANTERIORES ',$nature3);
+<<<<<<< HEAD
+=======
+
+        // $cellColSpan = array('gridSpan' => 5000000, 'valign' => 'center');
+        // $fancyTableStyleName = 'Fancy Table';
+        // $fancyTableStyle = array('borderSize' => 6, 'borderColor' => '', 'cellMargin' => 0, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER, 'cellSpacing' => 0);
+        // $fancyTableFirstRowStyle = array('borderBottomSize' => 0, 'borderBottomColor' => '0000FF', 'bgColor' => '');
+        // $fancyTableCellStyle = array('valign' => 'center');
+        // $fancyTableCellBtlrStyle = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
+        // $fancyTableFontStyle = array('bold' => true);
+        // $phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
+        // $table = $section->addTable($fancyTableStyleName);
+        // $table->addRow(900);
+        // $table->addCell(5000, $fancyTableCellStyle)->addText('    ASIGNATURA', $fancyTableFontStyle);
+        // $table->addCell(500, $fancyTableCellStyle)->addText(' ADEUDA', $fancyTableFontStyle);
+        // $table->addCell(500, $fancyTableCellStyle)->addText(' APROVADO EN EXTRAORDINARIO', $fancyTableFontStyle);
+        // $table->addCell(500, $fancyTableCellStyle)->addText(' CICLO REGULARIZACIÓN', $fancyTableFontStyle);
+        // $table->addCell(2000, $fancyTableCellBtlrStyle)->addText('PROMEDIO', $nature4);
+        // $table->addRow(900);
+        // $cellColSpan = array('gridSpan' => 5, 'valign' => 'center'); //esta variable cobina la celda
+        // $cellHCentered1 = array('align' => 'left','size' => 9, 'bold' => true); //esta variable alinea el texto a la derecha
+        // $table->addCell(2000, $cellColSpan)->addText("PROMEDIOS 1 er GRADO CICLO 2018-2019", $nature5, $cellHCentered1);
+>>>>>>> master
 
         // $cellColSpan = array('gridSpan' => 5000000, 'valign' => 'center');
         // $fancyTableStyleName = 'Fancy Table';
@@ -142,7 +173,10 @@ class KardexTerceroDocController extends Controller
         // $cellHCentered1 = array('align' => 'left','size' => 9, 'bold' => true); //esta variable alinea el texto a la derecha
         // $table->addCell(2000, $cellColSpan)->addText("PROMEDIOS 1 er GRADO CICLO 2018-2019", $nature5, $cellHCentered1);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
         // $table->addRow();
         // $table->addCell(5000)->addText("Lengua Materna: Español");
         // $table->addCell(500)->addText("");
@@ -283,15 +317,27 @@ class KardexTerceroDocController extends Controller
 
         // Saving the document as OOXML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+<<<<<<< HEAD
         $objWriter->save('KardexTercero.docx');
 
         // Saving the document as ODF file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
         $objWriter->save('KardexTerceroo.odt');
+=======
+        $objWriter->save($nombre . '.docx');
+
+        // Saving the document as ODF file...
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
+        $objWriter->save($nombre . '.docx');
+>>>>>>> master
 
         // Saving the document as HTML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 
+<<<<<<< HEAD
         return response()->download('KardexTercero.docx');
+=======
+        return response()->download($nombre . '.docx');
+>>>>>>> master
     }
 }
