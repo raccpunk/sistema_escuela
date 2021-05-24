@@ -61,6 +61,7 @@ class CalificacionesController extends Controller
     public function terceroB()
     {
         $grupo3 = GrupoAlumno::where('grado_id', '=', 3)->where('grupo_id', '=', 5)->get();
+        $tercero = [];
         foreach ($grupo3 as $item) {
 
             array_push($tercero, Alumno::findOrFail($item->alumno_id));

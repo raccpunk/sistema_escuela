@@ -217,15 +217,15 @@ class KardexSegundoDocController extends Controller
 
         // Saving the document as OOXML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        $objWriter->save('KardexSegundo.docx');
+        $objWriter->save($nombre.' KardexSegundo.docx');
 
         // Saving the document as ODF file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
-        $objWriter->save('KardexSegundo.odt');
+        $objWriter->save($nombre.' KardexSegundo.odt');
 
         // Saving the document as HTML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 
-        return response()->download('KardexSegundo.docx');
+        return response()->download($nombre.' KardexSegundo.docx');
     }
 }

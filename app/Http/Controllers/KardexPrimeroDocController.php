@@ -127,15 +127,15 @@ class KardexPrimeroDocController extends Controller
 
         // Saving the document as OOXML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        $objWriter->save('KardexPrimero.docx');
+        $objWriter->save($nombre.' KardexPrimero.docx');
 
         // Saving the document as ODF file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
-        $objWriter->save('KardexPrimero.odt');
+        $objWriter->save($nombre.' KardexPrimero.odt');
 
         // Saving the document as HTML file...
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 
-        return response()->download('KardexPrimero.docx');
+        return response()->download($nombre.' KardexPrimero.docx');
     }
 }
