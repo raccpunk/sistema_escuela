@@ -25,12 +25,7 @@ Route::get('/menu', function () {
     return view('layout');
 });
 Route::get('/Calificaciones', [CalificacionesController::class,'index']);
-// Route::get('/CalificacionesPrimeroB', [CalificacionesController::class,'primeroB']);
-// Route::get('/CalificacionesSegundoA',[CalificacionesController::class,'segundoA']);
-// Route::get('/CalificacionesSegundoB',[CalificacionesController::class,'segundoB']);
-// Route::get('/CalificacionesTerceroA',[CalificacionesController::class,'terceroA']);
-// Route::get('/CalificacionesTerceroB',[CalificacionesController::class,'terceroB']);
-
+Route::post('/Fetch', [CalificacionesController::class,'post']);
 //--------------------------------------
 //ROUTES Documentos
 //--------------------------------------
@@ -49,7 +44,7 @@ Route::post('/KardexSegundo', 'App\Http\Controllers\KardexSegundoDocController@K
 Route::post('/KardexTercero', 'App\Http\Controllers\KardexTerceroDocController@KardexTerceroDocword');
 
 Route::resource('alumno', $path . 'AlumnoController');
-Route::resource('Calificaciones', $path . 'CalificacionesController');
+// Route::resource('Calificaciones', $path . 'CalificacionesController');
 
 Route::resource('asignaturas', $path .'AsignaturasController');
 
