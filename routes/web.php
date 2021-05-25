@@ -24,12 +24,12 @@ $path = 'App\\Http\\Controllers\\';
 Route::get('/menu', function () {
     return view('layout');
 });
-Route::get('/CalificacionesPrimeroA', [CalificacionesController::class,'primeroA']);
-Route::get('/CalificacionesPrimeroB', [CalificacionesController::class,'primeroB']);
-Route::get('/CalificacionesSegundoA',[CalificacionesController::class,'segundoA']);
-Route::get('/CalificacionesSegundoB',[CalificacionesController::class,'segundoB']);
-Route::get('/CalificacionesTerceroA',[CalificacionesController::class,'terceroA']);
-Route::get('/CalificacionesTerceroB',[CalificacionesController::class,'terceroB']);
+Route::get('/Calificaciones', [CalificacionesController::class,'index']);
+// Route::get('/CalificacionesPrimeroB', [CalificacionesController::class,'primeroB']);
+// Route::get('/CalificacionesSegundoA',[CalificacionesController::class,'segundoA']);
+// Route::get('/CalificacionesSegundoB',[CalificacionesController::class,'segundoB']);
+// Route::get('/CalificacionesTerceroA',[CalificacionesController::class,'terceroA']);
+// Route::get('/CalificacionesTerceroB',[CalificacionesController::class,'terceroB']);
 
 //--------------------------------------
 //ROUTES Documentos
