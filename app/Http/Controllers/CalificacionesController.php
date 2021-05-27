@@ -20,27 +20,28 @@ class CalificacionesController extends Controller
         $ciclo_escolar = cicloEscolar::all();
         $grados = Grados::all();
 
-        $alumnos = [];
-        $grupoAlumno = GrupoAlumno::where('grado_id', '=', 1)->Where('grupo_id', '=', 3)->get();
-        foreach ($grupoAlumno as $item) {
-            array_push($alumnos, Alumno::findOrFail($item->alumno_id));
-        }
-        return view('Calificaciones', compact('grupos', 'grados', 'ciclo_escolar', 'alumnos'));
+        // $alumnos = [];
+        // $grupoAlumno = GrupoAlumno::where('grado_id', '=', 1)->Where('grupo_id', '=', 3)->get();
+        // foreach ($grupoAlumno as $item) {
+        //     array_push($alumnos, Alumno::findOrFail($item->alumno_id));
+        // }
+        // sort($alumnos);
+        return view('Calificaciones', compact('grupos', 'grados', 'ciclo_escolar'));
     }
     public function post(Request $request)
     {
         if (!empty($request)) {
             $alumnos = [];
-            $grupos = Grupos::all();
-            $ciclo_escolar = cicloEscolar::all();
-            $grados = Grados::all();
             $grupoAlumno = GrupoAlumno::where('grado_id', '=', $request->grado)
                 ->Where('grupo_id', '=', $request->grupo)
                 ->Where('ciclo_escolar_id', '=', $request->ciclo_escolar)->get();
             foreach ($grupoAlumno as $item) {
                 array_push($alumnos, Alumno::findOrFail($item->alumno_id));
             }
-            return view('Calificaciones', compact('grupos', 'grados', 'ciclo_escolar', 'alumnos'));
+            sort ($alumnos);
+            return response()->json($alumnos);
         }
+        // $input = $request->all();
+
     }
 }

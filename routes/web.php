@@ -36,12 +36,12 @@ Route::get('/docentes', 'App\Http\Controllers\DocwordController@docenteword');
 Route::get('/personal', 'App\Http\Controllers\DocwordController@personalword');
 //Route de kardex
 Route::get('/PlantillaDocenteDoc', 'App\Http\Controllers\PlantillaDocenteDocController@PlantillaDocenteword');
+//Todo: Change the routes to kardex documents
+// Route::post('/KardexPrimero', 'App\Http\Controllers\KardexPrimeroDocController@KardexPrimeroDocword');
 
-Route::post('/KardexPrimero', 'App\Http\Controllers\KardexPrimeroDocController@KardexPrimeroDocword');
+// Route::post('/KardexSegundo', 'App\Http\Controllers\KardexSegundoDocController@KardexSegundoDocword');
 
-Route::post('/KardexSegundo', 'App\Http\Controllers\KardexSegundoDocController@KardexSegundoDocword');
-
-Route::post('/KardexTercero', 'App\Http\Controllers\KardexTerceroDocController@KardexTerceroDocword');
+// Route::post('/KardexTercero', 'App\Http\Controllers\KardexTerceroDocController@KardexTerceroDocword');
 
 Route::resource('alumno', $path . 'AlumnoController');
 // Route::resource('Calificaciones', $path . 'CalificacionesController');
