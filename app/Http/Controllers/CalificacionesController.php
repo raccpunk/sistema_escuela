@@ -38,7 +38,7 @@ class CalificacionesController extends Controller
             foreach ($grupoAlumno as $item) {
                 array_push($alumnos, Alumno::findOrFail($item->alumno_id));
             }
-            sort ($alumnos);
+            sort($alumnos);
             return response()->json($alumnos);
         }
         // $input = $request->all();

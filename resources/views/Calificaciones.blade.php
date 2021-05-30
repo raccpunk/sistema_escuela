@@ -89,17 +89,14 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
+        $('#boleta1').click(function(e) {
+            e.preventDefault();
             var grado = document.getElementById('grados').value;
             var grupo = document.getElementById('grupos').value;
             var ciclo_escolar = document.getElementById('ciclos_escolares').value;
-        $('#boleta1').click(function(e) {
-            e.preventDefault();
-            var button =
-                '<th scope="row"><button id="boleta" class="btn btn-primary"><i class="fa fa-file-word-o" aria-hidden="true"></i></button></th>'
-
             $.ajax({
                 type: 'POST',
-                url: "{{ url('/Fetch') }}",
+                url: "{{ url('/Calificaciones') }}",
                 data: {
                     grado: grado,
                     grupo: grupo,
@@ -111,36 +108,41 @@
                         $('#alumnos tbody tr').remove();
                         var cadena;
                         $.each(response, function(index, obj) {
+                            let alumno = obj.id;
                             cadena = '<tr>';
-                            cadena = cadena + '<th scope="row">' + `${index+1}` + '</th>';
-                            cadena = cadena + '<th scope="row">' + obj.nombres + ' ' + obj
-                                .apellido_paterno +
-                                ' ' + obj.apellido_materno + '</th>';
-                            cadena = cadena + button + '</tr>';
+                            cadena = cadena + '<td scope="row">' + `${index+1}` + '</td>';
+                            cadena = cadena + '<td scope="row">' + obj.apellido_paterno +
+                                ' ' + obj.apellido_materno + ' ' + obj.nombres + '</td>';
+                            cadena = cadena + '<td>' +
+                                '<button id="boleta" class="btn btn-primary" onclick="archivo(' +
+                                alumno +
+                                ')"><i class="fa fa-file-word-o" aria-hidden="true"></i> Descargar</button></td>';
                             $("#alumnos").append(cadena);
                         })
+
                     }
                 }
             });
 
         });
-        $("#boleta").click(function() {
-            $.ajax({
-                type: 'POST',
-                url: "{{ url('/Kardex') }}",
-                data: {
-                    grado: grado,
-                    grupo: grupo,
-                    ciclo_escolar: ciclo_escolar,
-                    alumno: alumno,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    //Todo: add functionality to download kardex document
-                    })
-                }
-            });
-        })
+
+
+
+        function archivo(alumno) {
+            var grado = document.getElementById('grados').value;
+            var grupo = document.getElementById('grupos').value;
+            var ciclo_escolar = document.getElementById('ciclos_escolares').value;
+            if (grado == 1) {
+                var url = 'http://'+window.location.host+`/sistema_escuela/public/Kardexprimero/${alumno}/${grado}/${grupo}/${ciclo_escolar}/`
+                window.open(url);
+            } else if (grado == 2) {
+                var url = 'http://'+window.location.host+`/sistema_escuela/public/Kardexsegundo/${alumno}/${grado}/${grupo}/${ciclo_escolar}/`
+                window.open(url);
+            } else if (grado == 3) {
+                var url = 'http://'+window.location.host+`/sistema_escuela/public/Kardextercero/${alumno}/${grado}/${grupo}/${ciclo_escolar}/`
+                window.open(url);
+            }
+        }
 
     </script>
 @endsection

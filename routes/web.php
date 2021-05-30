@@ -4,14 +4,12 @@ use App\Http\Controllers\word_pruebaController;
 use App\Http\Controllers\CalificacionesController;
 use Illuminate\Support\Facades\Route;
 use League\CommonMark\Block\Element\Document;
+use PhpOffice\PhpSpreadsheet\Worksheet\Row;
 use SebastianBergmann\Template\Template;
 
 
 Route::get('/', function () {
     return view('welcome');
-});
-Route::get('/kardex', function () {
-    return view('kardex');
 });
 Route::get('/AprovechamientoEsc', function () {
     return view('AprovechamientoEsc');
@@ -25,19 +23,22 @@ Route::get('/menu', function () {
     return view('layout');
 });
 Route::get('/Calificaciones', [CalificacionesController::class,'index']);
-Route::post('/Fetch', [CalificacionesController::class,'post']);
+Route::post('/Calificaciones', [CalificacionesController::class,'post']);
 //--------------------------------------
 //ROUTES Documentos
 //--------------------------------------
-//Route de la lista de aprovechamiento de los alumnos
-Route::get('/AprovechamientoEscDoc', 'App\Http\Controllers\AprovechamientoEscDocController@AprovechamientoEscWord');
+// Route::post('/kardex' );
 //Route de Plantilla Docente
 Route::get('/docentes', 'App\Http\Controllers\DocwordController@docenteword');
 Route::get('/personal', 'App\Http\Controllers\DocwordController@personalword');
 //Route de kardex
 Route::get('/PlantillaDocenteDoc', 'App\Http\Controllers\PlantillaDocenteDocController@PlantillaDocenteword');
 //Todo: Change the routes to kardex documents
-// Route::post('/KardexPrimero', 'App\Http\Controllers\KardexPrimeroDocController@KardexPrimeroDocword');
+Route::get('/Kardexprimero/{alumno}/{grado}/{grupo}/{ciclo_escolar}/', 'App\Http\Controllers\KardexController@KardexPrimeroDocword');
+// Route::get('/download1', 'App\Http\Controllers\KardexController@download1');
+Route::get('/Kardexsegundo/{alumno}/{grado}/{grupo}/{ciclo_escolar}/', 'App\Http\Controllers\KardexController@KardexSegundoDocword');
+Route::get('/Kardextercero/{alumno}/{grado}/{grupo}/{ciclo_escolar}/', 'App\Http\Controllers\KardexController@KardexTerceroDocword');
+// Route::get('/Kardex', 'App\Http\Controllers\KardexController@index');
 
 // Route::post('/KardexSegundo', 'App\Http\Controllers\KardexSegundoDocController@KardexSegundoDocword');
 
