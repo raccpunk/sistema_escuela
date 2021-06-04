@@ -33,9 +33,9 @@ Route::get('/docentes', 'App\Http\Controllers\DocwordController@docenteword');
 Route::get('/personal', 'App\Http\Controllers\DocwordController@personalword');
 //Route de kardex
 Route::get('/PlantillaDocenteDoc', 'App\Http\Controllers\PlantillaDocenteDocController@PlantillaDocenteword');
-//Todo: Change the routes to kardex documents
+
 Route::get('/Kardexprimero/{alumno}/{grado}/{grupo}/{ciclo_escolar}/', 'App\Http\Controllers\KardexController@KardexPrimeroDocword');
-// Route::get('/download1', 'App\Http\Controllers\KardexController@download1');
+Route::get('/Kardex/{grado}/{grupo}/{ciclo_escolar}/', 'App\Http\Controllers\KardexController@GetAlumnosGrupo');
 Route::get('/Kardexsegundo/{alumno}/{grado}/{grupo}/{ciclo_escolar}/', 'App\Http\Controllers\KardexController@KardexSegundoDocword');
 Route::get('/Kardextercero/{alumno}/{grado}/{grupo}/{ciclo_escolar}/', 'App\Http\Controllers\KardexController@KardexTerceroDocword');
 // Route::get('/Kardex', 'App\Http\Controllers\KardexController@index');

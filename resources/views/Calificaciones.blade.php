@@ -19,7 +19,7 @@
             style=" background-color: #ecedf2;position:fixed;margin-top:3.1em;margin-left: 6.3em;padding-bottom: 8px;">
             <h6 style="padding-left:11px;text-align: left;">GENERADOR DE BOLETAS DE CALIFICACIONES</h6>
         </div>
-    </div>
+    </div>6
     <div class="card" style="width: 100%; margin-left: 6.5em; margin-top:6em;position:relative;">
         <div class="card-title bg-light text-dark">
             <p><i class="fa fa-cog" aria-hidden="true" style="margin-left:5px; margin-right: 5px;"></i>Opciones</p>
@@ -57,7 +57,7 @@
             </div>
             <button id="boleta1" class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i>
                 Descargar Una Boleta Especifíca</button>
-            <button class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i>
+            <button id="boletas" class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i>
                 Descargar Todas Las Boletas</button>
             <br>
             <br>
@@ -143,6 +143,13 @@
                 window.open(url);
             }
         }
+        $("#boletas").click(function (){
+            var grado = document.getElementById('grados').value;
+            var grupo = document.getElementById('grupos').value;
+            var ciclo_escolar = document.getElementById('ciclos_escolares').value;
+            var url = 'http://'+window.location.host+`/sistema_escuela/public/Kardex/${grado}/${grupo}/${ciclo_escolar}/`
+            window.open(url);
+        });
 
     </script>
 @endsection
